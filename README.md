@@ -90,14 +90,16 @@ To plug in a real spaCy model, replace unitmix_extractor ner_stub.py.
 
 ## Documentation
 
-• docs/problem_definition.md
-• docs/output_schema.md
-• docs/data_labeling_guide.md
-• docs/modeling_approach.md
-• docs/training_process.md
-• docs/evaluation_plan.md
-• docs/error_analysis.md
-• docs/whats_omitted_and_why.md
+Read these in order
+
+• [Problem definition](docs/problem_definition.md)  
+• [Output schema](docs/output_schema.md)  
+• [Dataset and labeling](docs/data_labeling_guide.md)  
+• [Modeling approach](docs/modeling_approach.md)  
+• [Training process](docs/training_process.md)  
+• [Evaluation plan](docs/evaluation_plan.md)  
+• [Error analysis](docs/error_analysis.md)  
+• [What is omitted and why](docs/whats_omitted_and_why.md)
 
 ## Rent pricing step
 
