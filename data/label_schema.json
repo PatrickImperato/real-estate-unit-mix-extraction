@@ -1,0 +1,39 @@
+{
+  "task": "unit_mix_extraction",
+  "entities": [
+    {
+      "name": "TOTUNIT",
+      "description": "Total unit count for property, when explicitly stated."
+    },
+    {
+      "name": "DETUNIT",
+      "description": "Count or descriptor for a specific unit group."
+    },
+    {
+      "name": "TOTBED",
+      "description": "Total bedrooms across property, when explicitly stated."
+    },
+    {
+      "name": "DETBED",
+      "description": "Bedrooms for a specific unit group."
+    },
+    {
+      "name": "TOTBATH",
+      "description": "Total bathrooms across property, when explicitly stated."
+    },
+    {
+      "name": "DETBATH",
+      "description": "Bathrooms for a specific unit group."
+    }
+  ],
+  "output_contract": {
+    "total_units": "integer or null",
+    "unit_mix": [
+      {
+        "count": "integer",
+        "beds": "integer",
+        "baths": "number"
+      }
+    ]
+  }
+}
