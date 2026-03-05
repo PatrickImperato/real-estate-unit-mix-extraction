@@ -2,9 +2,9 @@
 
 Extract structured unit mix data from unstructured apartment listing descriptions.
 
-This project demonstrates an applied NLP system that converts messy real estate listing text into structured data that can be used for financial modeling, underwriting, and portfolio analysis.
+This project demonstrates an applied NLP system that converts messy real estate listing text into structured data used for financial modeling, underwriting, and portfolio analysis.
 
-The repository focuses on the design of the NLP extraction system, including problem framing, dataset design, labeling strategy, modeling approach, and evaluation methodology.
+The repository focuses on problem framing, dataset design, labeling strategy, modeling approach, and evaluation methodology.
 
 The production system includes additional components that are intentionally not included here.
 
@@ -29,23 +29,21 @@ The production system includes additional components that are intentionally not 
 
 Apartment building listings frequently describe the **unit mix** inside free form text written by listing agents.
 
-Examples of listing descriptions may include phrases like:
+Examples may include phrases like:
 
-20 one bedroom 1 bathrooms  
-five two bedroom with one and half bath
+20 one bedroom one bath  
+5 two bedroom 1.5 bath
 
-In many cases the unit mix is embedded inside longer paragraphs describing the property.
+In many cases the unit mix appears inside longer paragraphs describing the property.
 
-Because there is no standardized format, extracting reliable unit mix data from listings at scale becomes difficult.
+Because there is no standardized format, extracting reliable unit mix data at scale becomes difficult.
 
-However, structured unit mix data is critical for many real estate workflows, including:
+Structured unit mix data supports workflows such as
 
 • rent estimation  
 • underwriting models  
 • automated financial projections  
 • portfolio analysis
-
-This project focuses on building an NLP pipeline that converts messy listing descriptions into structured unit mix data.
 
 Back to top → [Table of Contents](#table-of-contents)
 
@@ -75,9 +73,7 @@ Back to top → [Table of Contents](#table-of-contents)
 
 ## System Overview
 
-The overall system converts raw listing text into structured data that can be used by downstream models.
-
-High level flow
+High level pipeline
 
 Listing description text  
 → NLP entity extraction  
@@ -86,9 +82,13 @@ Listing description text
 → rent estimation step  
 → downstream financial modeling
 
-This repository focuses specifically on the **information extraction layer**.
+This repository focuses on the **information extraction layer**.
 
-The rent estimation step is represented with a stub interface to illustrate how the extraction output connects to downstream models.
+The rent estimation step is represented with a stub interface.
+
+Example stub
+
+• [unitmix_extractor/rent_estimator_stub.py](unitmix_extractor/rent_estimator_stub.py)
 
 Back to top → [Table of Contents](#table-of-contents)
 
@@ -96,23 +96,19 @@ Back to top → [Table of Contents](#table-of-contents)
 
 ## Modeling Approach
 
-The core extraction approach uses **Named Entity Recognition**.
-
-Primary approach
+Primary production approach
 
 • spaCy NER for entity extraction
 
-Additional experiments
+This repository ships a safe stub model so the project runs without shipping production artifacts.
 
-• lightweight BERT fine tuning experiments
+Stub model
 
-Training approach
+• [unitmix_extractor/ner_stub.py](unitmix_extractor/ner_stub.py)
 
-• manually labeled training examples  
-• domain specific labeling schema  
-• iterative dataset refinement through error analysis
+Post processing logic groups spans into structured unit mix data.
 
-The goal was **practical extraction accuracy** for underwriting workflows rather than perfect extraction on every listing.
+• [unitmix_extractor/postprocess.py](unitmix_extractor/postprocess.py)
 
 Back to top → [Table of Contents](#table-of-contents)
 
@@ -120,9 +116,11 @@ Back to top → [Table of Contents](#table-of-contents)
 
 ## Dataset and Labeling
 
-The extraction task requires a domain specific labeling schema.
+Annotation tool
 
-Primary entity labels
+Doccano sequence labeling.
+
+Label set
 
 • TOTUNIT  
 • DETUNIT  
@@ -131,20 +129,10 @@ Primary entity labels
 • TOTBATH  
 • DETBATH
 
-Annotation tool
+Sample dataset included in this repository
 
-Doccano sequence labeling.
-
-Design goals for the labeling schema
-
-• simple enough for fast annotation  
-• expressive enough to reconstruct the unit mix deterministically  
-• flexible across inconsistent listing formats
-
-Example dataset files included in the repository
-
-• [Sample Inputs](data/sample_inputs.jsonl)  
-• [Sample Labels](data/sample_labels.jsonl)
+• [data/sample_inputs.jsonl](data/sample_inputs.jsonl)  
+• [data/sample_labels.jsonl](data/sample_labels.jsonl)
 
 Back to top → [Table of Contents](#table-of-contents)
 
@@ -152,19 +140,17 @@ Back to top → [Table of Contents](#table-of-contents)
 
 ## Evaluation
 
-Evaluation focuses on **structured output quality** rather than token level NER metrics.
+Evaluation focuses on structured output quality rather than token level metrics.
 
-Metrics included
+Metrics used
 
-• total unit count exact match  
+• total unit exact match  
 • unit mix exact match  
 • unit mix overlap score
 
-This allows evaluation of the **full extraction pipeline**, not just the NER model.
-
 Evaluation script
 
-• [Evaluation Script](unitmix_eval/evaluate.py)
+• [unitmix_eval/evaluate.py](unitmix_eval/evaluate.py)
 
 Back to top → [Table of Contents](#table-of-contents)
 
@@ -174,20 +160,20 @@ Back to top → [Table of Contents](#table-of-contents)
 
 Key folders
 
-**data**  
+data  
 Sample input listings and synthetic labels
 
-**docs**  
+docs  
 Design documentation and methodology
 
-**unitmix_extractor**  
+unitmix_extractor  
 Core extraction pipeline
 
-**unitmix_eval**  
+unitmix_eval  
 Evaluation harness and scoring metrics
 
-**tests**  
-Basic smoke tests for pipeline validation
+tests  
+Basic smoke tests
 
 Back to top → [Table of Contents](#table-of-contents)
 
@@ -246,15 +232,14 @@ Back to top → [Table of Contents](#table-of-contents)
 
 ## What Is Intentionally Omitted
 
-The production system includes additional components that are not included in this repository.
+This repository demonstrates design and evaluation without exposing business critical details.
 
-These include
+The following are intentionally excluded
 
 • deployed web application  
 • infrastructure and hosting configuration  
+• secrets or API keys  
 • production scraping pipelines  
 • full training datasets  
 • trained model artifacts  
-• external rent estimation providers
-
-These components are excluded to keep the repository safe to share while still demonstrating the design and implementation approach.
+• external rent estimation provider details
