@@ -1,4 +1,5 @@
 # Real Estate Unit Mix Extraction
+Applied NLP project demonstrating entity extraction, dataset design, and evaluation for messy domain specific text.
 
 Extract structured unit mix data from unstructured apartment listing descriptions.
 
