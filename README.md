@@ -75,6 +75,15 @@ Back to top → [Table of Contents](#table-of-contents)
 
 ## System Overview
 
+```mermaid
+flowchart LR
+A[Apartment Listing Text] --> B[NLP Entity Extraction]
+B --> C[Span Grouping and Normalization]
+C --> D[Structured Unit Mix JSON]
+D --> E[Evaluation Metrics]
+E --> F[Downstream Financial Modeling]
+```
+
 High level pipeline
 
 Listing description text  
@@ -84,7 +93,7 @@ Listing description text
 → rent estimation step  
 → downstream financial modeling
 
-This repository focuses on the **information extraction layer**.
+This repository focuses on the information extraction layer.
 
 The rent estimation step is represented with a stub interface.
 
