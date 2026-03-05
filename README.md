@@ -1,3 +1,4 @@
+![CI](https://github.com/PatrickImperato/real-estate-unit-mix-extraction/actions/workflows/ci.yml/badge.svg)
 # Real Estate Unit Mix Extraction
 Applied NLP project demonstrating entity extraction, dataset design, and evaluation for messy domain specific text.
 
