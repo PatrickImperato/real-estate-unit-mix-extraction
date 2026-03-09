@@ -14,9 +14,16 @@ The production system includes additional components that are intentionally not 
 
 ## Workflow Example
 
-This screenshot shows how structured output from listing text can be used inside a real underwriting and screening workflow.
+This screenshot shows how structured output from listing text can be used inside a real underwriting and property screening workflow.
 
-Instead of leaving unit mix details buried in unstructured listing descriptions, the system converts them into structured fields that can support faster review, filtering, and comparison across properties.
+The goal of the extraction system is not just to label text. It is to turn messy listing information into structured fields that can be used inside decision tools.
+
+In this example, extracted property and unit data supports:
+
+1. property filtering
+2. quick comparison across opportunities
+3. downstream financial review
+4. faster underwriting decisions
 
 ![Unit mix workflow example](assets/unit-mix-workflow-screenshot.png)
 
