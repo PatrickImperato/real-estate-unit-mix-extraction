@@ -105,6 +105,23 @@ Back to top → [Table of Contents](#table-of-contents)
 
 ---
 
+## Evaluation
+
+Extraction quality is measured using three primary metrics.
+
+Precision  
+How often extracted unit attributes are correct.
+
+Recall  
+How often valid attributes are successfully captured.
+
+Normalization Accuracy  
+Whether the final structured unit mix correctly reflects the underlying listing information.
+
+Future evaluation work will include benchmarking extraction performance across multiple listing styles including broker listings, marketing pages, and MLS descriptions.
+
+---
+
 ## Modeling Approach
 
 Primary production approach
@@ -122,6 +139,41 @@ Post processing logic groups spans into structured unit mix data.
 • [unitmix_extractor/postprocess.py](unitmix_extractor/postprocess.py)
 
 Back to top → [Table of Contents](#table-of-contents)
+
+---
+
+## System Architecture
+
+The extraction pipeline converts unstructured listing descriptions into normalized unit mix records.
+
+High level flow
+
+Listing Text  
+↓  
+Named Entity Extraction  
+↓  
+Unit Attribute Grouping  
+↓  
+Schema Validation  
+↓  
+Structured Unit Mix Output
+
+### Key Components
+
+Text Ingestion  
+Collects listing descriptions from marketing pages and broker feeds.
+
+Extraction Model  
+Identifies candidate spans for bedrooms, bathrooms, and unit counts.
+
+Normalization Layer  
+Converts extracted values into standardized unit types.
+
+Schema Validation  
+Ensures output conforms to the defined structured schema.
+
+Structured Output  
+Clean unit mix records suitable for underwriting workflows.
 
 ---
 
@@ -255,6 +307,7 @@ The following are intentionally excluded
 • trained model artifacts  
 • external rent estimation provider details
 
+---
 
 ## Connect
 
