@@ -254,3 +254,12 @@ The following are intentionally excluded
 • full training datasets  
 • trained model artifacts  
 • external rent estimation provider details
+
+
+## Connect
+
+LinkedIn
+https://www.linkedin.com/in/patrickimperato/
+
+GitHub
+https://github.com/PatrickImperato
